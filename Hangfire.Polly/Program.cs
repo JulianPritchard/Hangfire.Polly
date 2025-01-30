@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IContainer, Container>();
+builder.Services.AddControllers();
 
 builder.Services.AddHangfire((provider, config) =>
         config.UseSimpleAssemblyNameTypeSerializer()
@@ -30,6 +31,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+app.MapControllers();
+
+app.MapGet("/DoThing", () => "Hello World!");
 
 var summaries = new[]
 {
