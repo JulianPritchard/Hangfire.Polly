@@ -1,11 +1,26 @@
+using Hangfire;
+using Hangfire.Polly;
+using Hangfire.PostgreSql;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<IContainer, Container>();
+
+builder.Services.AddHangfire((provider, config) =>
+        config.UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UsePostgreSqlStorage(x
+                => x.UseNpgsqlConnection(provider.GetRequiredService<IContainer>().ConnectionString()))
+    );
+
+builder.Services.AddHangfireServer(x => x.SchedulePollingInterval = TimeSpan.FromSeconds(1));
 
 var app = builder.Build();
+app.UseHangfireDashboard();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
