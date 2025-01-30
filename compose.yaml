@@ -1,0 +1,6 @@
+﻿services:
+  hangfire.polly:
+    image: hangfire.polly
+    build:
+      context: .
+      dockerfile: Hangfire.Polly/Dockerfile
