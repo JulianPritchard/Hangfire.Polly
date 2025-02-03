@@ -1,6 +1,6 @@
 using Hangfire;
-using Hangfire.Polly;
-using Hangfire.Polly.Services;
+using Hangfire.Polly.Example;
+using Hangfire.Polly.Example.Services;
 using Hangfire.PostgreSql;
 
 var builder = WebApplication.CreateBuilder(args);

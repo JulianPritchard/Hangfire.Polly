@@ -1,8 +1,8 @@
-﻿using Hangfire.Polly.Services;
+﻿using Hangfire.Polly.Example.Services;
 using Microsoft.AspNetCore.Mvc;
 // ReSharper disable ConvertToPrimaryConstructor
 
-namespace Hangfire.Polly.Controllers;
+namespace Hangfire.Polly.Example.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

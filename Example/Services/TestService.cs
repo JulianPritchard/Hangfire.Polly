@@ -1,7 +1,7 @@
-﻿using Hangfire.Polly.Utils;
+﻿using Hangfire.Polly.Example.Utils;
 using Hangfire.Server;
 
-namespace Hangfire.Polly.Services;
+namespace Hangfire.Polly.Example.Services;
 
 public class TestService
 {

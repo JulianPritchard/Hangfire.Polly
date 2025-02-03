@@ -1,9 +1,9 @@
 ﻿using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
-using Hangfire.Polly.Utils;
+using Hangfire.Polly.Example.Utils;
 using Testcontainers.PostgreSql;
 
-namespace Hangfire.Polly;
+namespace Hangfire.Polly.Example;
 
 public interface IContainer
 {

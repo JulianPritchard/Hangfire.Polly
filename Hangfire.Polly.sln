@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.Polly", "Hangfire.Polly\Hangfire.Polly.csproj", "{EA66D59B-F33E-4D77-A8BA-B0FEBC976E88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{EA66D59B-F33E-4D77-A8BA-B0FEBC976E88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E8500EAF-AFBD-4224-B5D5-3D11DC7C35F7}"
 	ProjectSection(SolutionItems) = preProject

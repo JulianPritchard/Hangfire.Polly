@@ -1,6 +1,6 @@
 ﻿using Hangfire.Server;
 
-namespace Hangfire.Polly.Utils;
+namespace Hangfire.Polly.Example.Utils;
 
 public static class PerformContextEx
 {

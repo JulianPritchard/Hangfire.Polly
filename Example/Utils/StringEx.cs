@@ -1,4 +1,4 @@
-﻿namespace Hangfire.Polly.Utils;
+﻿namespace Hangfire.Polly.Example.Utils;
 
 internal static class StringEx
 {
