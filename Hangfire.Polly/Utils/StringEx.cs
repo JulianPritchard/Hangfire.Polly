@@ -1,6 +1,6 @@
 ﻿namespace Hangfire.Polly.Utils;
 
-public static class StringEx
+internal static class StringEx
 {
     public static bool Exists(this string? source)
         => !string.IsNullOrWhiteSpace(source);

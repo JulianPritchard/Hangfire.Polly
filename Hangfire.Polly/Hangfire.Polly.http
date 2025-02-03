@@ -1,6 +1,6 @@
-@Hangfire.Polly_HostAddress = http://localhost:5170
-
-GET {{Hangfire.Polly_HostAddress}}/weatherforecast/
-Accept: application/json
+@target = http://localhost:5170
 
 ###
+
+GET {{target}}/api/Test
+Accept: application/json

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hangfire.Polly.Services;
+using Microsoft.AspNetCore.Mvc;
+// ReSharper disable ConvertToPrimaryConstructor
 
 namespace Hangfire.Polly.Controllers;
 
@@ -6,10 +8,18 @@ namespace Hangfire.Polly.Controllers;
 [Route("api/[controller]")]
 public class TestController : ControllerBase
 {
+    private readonly TestService _testService;
+
+    public TestController(TestService testService)
+    {
+        _testService = testService;
+    }
+
     [HttpGet]
-    [AutomaticRetry(Attempts = 6, DelaysInSeconds = [1, 2, 3, 5, 8])]
     public IActionResult Get()
     {
+        _testService.Start();
+
         return Ok();
     }
 }
