@@ -1,4 +1,5 @@
-﻿using DotNet.Testcontainers.Builders;
+﻿using System.Net.NetworkInformation;
+using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
 using Hangfire.Polly.Example.Utils;
 using Testcontainers.PostgreSql;
@@ -16,7 +17,7 @@ public interface IContainer
 public class Container : IContainer
 {
     private readonly ILogger<Container> _logger;
-    private const int DatabasePort = 5432;
+    private const int NgpsqlPort = 5432;
     private const string Database = "postgres";
     private const string Username = "postgres";
     private const string Password = "mysecretpassword";
@@ -25,21 +26,22 @@ public class Container : IContainer
     private readonly PostgreSqlContainer _postgreSql;
 
     public IDatabaseContainer Instance => _postgreSql;
-    public ushort PublicPort => _postgreSql.GetMappedPublicPort(DatabasePort);
+    public ushort PublicPort => _postgreSql.GetMappedPublicPort(NgpsqlPort);
     public string HostName => _postgreSql.Hostname;
 
     public Container(ILogger<Container> logger, IServiceProvider provider)
     {
         _logger = logger;
         _logger.LogInformation("Starting build process for {Host}", nameof(Container));
+        var hostPort = GetPortFrom(NgpsqlPort);
         _postgreSql = new PostgreSqlBuilder()
                 .WithImage(ImageUri)
                 .WithLogger(provider.GetRequiredService<ILogger<PostgreSqlContainer>>())
-                .WithPortBinding(DatabasePort, DatabasePort)
+                .WithPortBinding(hostPort, NgpsqlPort)
                 .WithUsername(Username)
                 .WithPassword(Password)
                 .WithDatabase(Database)
-                .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(DatabasePort))
+                .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(NgpsqlPort))
                 .Build()
             ;
 
@@ -60,6 +62,24 @@ public class Container : IContainer
             $"Password={Password}",
             $"TrustServerCertificate=True"
         );
+        return result;
+    }
+
+    private static int GetPortFrom(int from)
+    {
+        var ip = IPGlobalProperties.GetIPGlobalProperties();
+        var ports = ip.GetActiveTcpListeners()
+                .Concat(ip.GetActiveUdpListeners())
+                .Select(x => x.Port)
+                .ToHashSet()
+            ;
+
+        var result = from;
+        while (ports.Contains(result))
+        {
+            result++;
+        }
+
         return result;
     }
 }
