@@ -4,3 +4,9 @@
     build:
       context: .
       dockerfile: Hangfire.Polly/Dockerfile
+
+  example.polly:
+    image: example.polly
+    build:
+      context: .
+      dockerfile: Example.Polly/Dockerfile
