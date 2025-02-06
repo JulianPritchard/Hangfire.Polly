@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{05
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Polly", "Example.Polly\Example.Polly.csproj", "{17C2322E-E34C-485E-B460-A940AA3FAD87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.PollyReactive", "Example.PollyReactive\Example.PollyReactive.csproj", "{54A409D4-39A1-458C-9FFB-9B4A316A56EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +35,14 @@ Global
 		{17C2322E-E34C-485E-B460-A940AA3FAD87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17C2322E-E34C-485E-B460-A940AA3FAD87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17C2322E-E34C-485E-B460-A940AA3FAD87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A409D4-39A1-458C-9FFB-9B4A316A56EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A409D4-39A1-458C-9FFB-9B4A316A56EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A409D4-39A1-458C-9FFB-9B4A316A56EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A409D4-39A1-458C-9FFB-9B4A316A56EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EA66D59B-F33E-4D77-A8BA-B0FEBC976E88} = {058B71F7-56D8-4CE5-B733-FC84EE64A6F6}
 		{17C2322E-E34C-485E-B460-A940AA3FAD87} = {058B71F7-56D8-4CE5-B733-FC84EE64A6F6}
+		{54A409D4-39A1-458C-9FFB-9B4A316A56EA} = {058B71F7-56D8-4CE5-B733-FC84EE64A6F6}
 	EndGlobalSection
 EndGlobal

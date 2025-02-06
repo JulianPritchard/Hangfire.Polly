@@ -71,6 +71,8 @@ app.MapGet("/do-thing", async () =>
 
 app.Run();
 
+
+
 static Task PublishTiming(TimeSpan executionDuration, Context context)
 {
     object url = "[unknown]";
