@@ -19,7 +19,7 @@ public class TestService
         _jobClient.Schedule(() => DoThing(null), TimeSpan.FromSeconds(5));
     }
 
-    [AutomaticRetry(Attempts = 6, DelaysInSeconds = [1, 2, 3, 5, 8, 13])]
+    [AutoRetry(Attempts = 6, DelaysInSeconds = [1, 2, 3, 5, 8, 13])]
     public void DoThing(PerformContext? context = null)
     {
         var retryCount = context.GetRetryCount();
