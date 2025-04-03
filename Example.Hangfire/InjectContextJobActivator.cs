@@ -1,4 +1,5 @@
-﻿using Hangfire.Server;
+﻿using Hangfire.Polly.Example.Services;
+using Hangfire.Server;
 
 namespace Hangfire.Polly.Example;
 
@@ -25,6 +26,8 @@ public class InjectContextJobActivator : JobActivator
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _scope = scope ?? throw new ArgumentNullException(nameof(scope));
+            // _scope.ServiceProvider.RegisterHangfireServer()
+            // scope.
         }
 
         public override object Resolve(Type type)
@@ -34,10 +37,22 @@ public class InjectContextJobActivator : JobActivator
 
         object IServiceProvider.GetService(Type serviceType)
         {
+            if (serviceType == typeof(PerformContext)) return _context;
+            if (serviceType == typeof(TestService))
+                return _scope
+                    .ServiceProvider
+                    .GetRequiredService<ITestServiceFactory>()
+                    .With(_context);
+
+            return _scope.ServiceProvider.GetService(serviceType);
+        }
+
+        /*object IServiceProvider.GetService(Type serviceType)
+        {
             if (serviceType == typeof(PerformContext))
                 return _context;
             return _scope.ServiceProvider.GetService(serviceType);
-        }
+        }*/
 
         /// <inheritdoc />
         public override void DisposeScope()

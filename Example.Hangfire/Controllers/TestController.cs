@@ -8,17 +8,18 @@ namespace Hangfire.Polly.Example.Controllers;
 [Route("api/[controller]")]
 public class TestController : ControllerBase
 {
-    private readonly TestService _testService;
+    private readonly ITestServiceFactory _testFactory;
 
-    public TestController(TestService testService)
+    public TestController(ITestServiceFactory testFactory)
     {
-        _testService = testService;
+        _testFactory = testFactory;
     }
 
     [HttpGet]
     public IActionResult Get()
     {
-        _testService.Start();
+        var testService = _testFactory.With(null);
+        testService.Start();
 
         return Ok();
     }

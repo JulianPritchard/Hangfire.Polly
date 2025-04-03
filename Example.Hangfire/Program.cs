@@ -3,7 +3,11 @@ using Hangfire.Common;
 using Hangfire.Polly.Example;
 using Hangfire.Polly.Example.Services;
 using Hangfire.PostgreSql;
+using Hangfire.Server;
+
 // using AutomaticRetryAttribute = Hangfire.Polly.Example.AutomaticRetryAttribute;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +16,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IContainer, Container>();
-builder.Services.AddSingleton<TestService>();
 builder.Services.AddSingleton<JobActivator, InjectContextJobActivator>();
+builder.Services.AddAutoFactoryScoped<ITestServiceFactory>();
+// builder.Services.AddScoped<TestService>();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<AutomaticRetryAttribute>();
 builder.Services.AddSingleton<AutoRetryAttribute>();
